@@ -16,6 +16,12 @@ public class realNumber {
         top *= scalar;
     }
 
+    public realNumber multiply(realNumber second) {
+        top *= second.top;
+        bottom *= second.bottom;
+        return this;
+    }
+
     // make a reduce function
     public void reduce() {
         for (int i = 2; i <= Math.min(bottom, top); i++) {
@@ -36,6 +42,10 @@ public class realNumber {
         top += temp.top;
         reduce();
         return this;
+    }
+
+    public realNumber copy() {
+        return new realNumber(top, bottom);
     }
 
     @Override
