@@ -3,9 +3,7 @@ public class realNumber {
     int bottom;
 
     public realNumber(int top, int bottom) {
-        if (bottom == 0) {
-            throw new IllegalArgumentException("Cannot divide by zero");
-        }
+        if (bottom == 0) {throw new IllegalArgumentException("Cannot divide by zero");}
         this.top = top;
         this.bottom = bottom;
     }
@@ -28,6 +26,16 @@ public class realNumber {
                 return;
             }
         }
+    }
+
+    public realNumber add(realNumber num) {
+        realNumber temp = new realNumber(num.top * bottom, num.bottom * bottom);
+        top *= num.bottom;
+        bottom *= num.bottom;
+        //this.multiply(num.bottom);
+        top += temp.top;
+        reduce();
+        return this;
     }
 
     @Override
