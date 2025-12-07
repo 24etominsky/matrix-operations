@@ -3,6 +3,9 @@ public class realNumber {
     int bottom;
 
     public realNumber(int top, int bottom) {
+        if (bottom == 0) {
+            throw new IllegalArgumentException("Cannot divide by zero");
+        }
         this.top = top;
         this.bottom = bottom;
     }
@@ -16,4 +19,19 @@ public class realNumber {
     }
 
     // make a reduce function
+    public void reduce() {
+        for (int i = 2; i <= Math.min(bottom, top); i++) {
+            if (top % i == 0 && bottom % i == 0) {
+                top /= i;
+                bottom /= i;
+                reduce();
+                return;
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return top + "/" + bottom;
+    }
 }
